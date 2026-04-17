@@ -7,12 +7,14 @@ import java.util.List;
 import java.util.Optional;
 import mate.academy.dao.MovieSessionDao;
 import mate.academy.exception.DataProcessingException;
+import mate.academy.lib.Dao;
 import mate.academy.model.MovieSession;
 import mate.academy.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+@Dao
 public class MovieSessionDaoImpl implements MovieSessionDao {
 
     @Override
@@ -67,7 +69,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return Optional.ofNullable(session.get(MovieSession.class, id));
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get a cinemaHall by id: " + id, e);
+            throw new DataProcessingException("Can't get a Movie Session by id: " + id, e);
         }
     }
 
